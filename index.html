@@ -18,79 +18,92 @@
     </header>
 
     <main>
+      <section>
+        <h2>Projekt</h2>
 
-    <section>
-      <h2>Projekt</h2>
-      <label for="projekt">Välj ett projekt</label>
-      <select
-        name="projekt"
-        id="projekt"
-        required
-      >
-        <option
-          value=""
-          selected
-          disabled
-          hidden
-        >
-          Välj här...
-        </option>
-        <option value="volvo-lundby">Volvo Lundby</option>
-        <option value="park-central">Park Central</option>
-      </select>
-    </section>
-
-    <section>
-      <h2>Ny ÄTA</h2>
-      <form>
-        <label for="datum">Datum</label>
-        <input
-          type="date"
-          id="datum"
-          name="datum"
-          required
-        />
-
-        <label for="beskrivning">Beskrivning</label>
-        <textarea
-          id="beskrivning"
-          name="beskrivning"
-          required
-        ></textarea>
-        <label for="timmar">Timmar</label>
-        <input
-          type="number"
-          id="timmar"
-          name="timmar"
-          step="0.5"
-          required
-        />
-        <label for="status">Status</label>
-        <select
-          name="status"
-          id="status"
-          required
-        >
-          <option
-            value=""
-            selected
-            disabled
-            hidden
+        <div class="form-group">
+          <label for="projekt">Välj ett projekt</label>
+          <select
+            name="projekt"
+            id="projekt"
+            required
           >
-            Välj här...
-          </option>
-          <option value="godkänd">Godkänd</option>
-          <option value="ej-godkänd">Ej godkänd</option>
-        </select>
-        <button type="submit">Lägg till ÄTA</button>
-      </form>
-    </section>
+            <option
+              value=""
+              selected
+              disabled
+              hidden
+            >
+              Välj här...
+            </option>
+            <option value="volvo-lundby">Volvo Lundby</option>
+            <option value="park-central">Park Central</option>
+          </select>
+        </div>
+      </section>
 
-    <section>
+      <section>
+        <h2>Ny ÄTA</h2>
+        <form>
+          <div class="form-group">
+            <label for="datum">Datum</label>
+            <input
+              type="date"
+              id="datum"
+              name="datum"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="beskrivning">Beskrivning</label>
+            <textarea
+              id="beskrivning"
+              name="beskrivning"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="timmar">Timmar</label>
+            <input
+              type="number"
+              id="timmar"
+              name="timmar"
+              step="0.5"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select
+              name="status"
+              id="status"
+              required
+            >
+              <option
+                value=""
+                selected
+                disabled
+                hidden
+              >
+                Välj här...
+              </option>
+              <option value="godkänd">Godkänd</option>
+              <option value="ej-godkänd">Ej godkänd</option>
+            </select>
+          </div>
+
+          <button type="submit">Lägg till ÄTA</button>
+        </form>
+      </section>
+
+      <section>
         <h2>Registrerade ÄTA</h2>
 
         <div id="ata-lista"></div>
-    </section>
+      </section>
     </main>
 
     <script src="js/app.js"></script>
