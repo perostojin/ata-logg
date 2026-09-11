@@ -56,6 +56,28 @@
           </div>
 
           <div class="form-group">
+            <label for="ata-typ">Typ av ÄTA-arbete</label>
+
+            <select
+              name="ata-typ"
+              id="ata-typ"
+              required
+            >
+              <option
+                value=""
+                selected
+                disabled
+                hidden
+              >
+                Välj här...
+              </option>
+              <option value="andring">Ändringsarbete</option>
+              <option value="tillagg">Tilläggsarbete</option>
+              <option value="avgang">Avgående arbete</option>
+            </select>
+          </div>
+
+          <div class="form-group">
             <label for="beskrivning">Beskrivning</label>
             <textarea
               id="beskrivning"
