@@ -20,7 +20,8 @@ ataForm.addEventListener('submit', function (event) {
     projekt: projektSelect.value,
   };
   ataLlista.push(ataData);
-  const ataKort = document.createElement('div');
+  const ataKort = document.createElement('article');
+  ataKort.classList.add('ata-kort');
   const projektRubrik = document.createElement('h3');
   projektRubrik.textContent =
     projektSelect.options[projektSelect.selectedIndex].textContent;
