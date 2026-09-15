@@ -111,3 +111,14 @@ section h2 {
 .ata-kort p + p {
   margin-top: 0.25rem;
 }
+
+
+.status-godkand {
+  color: #15803d;
+  font-weight: bold;
+}
+
+.status-ej-godkand {
+  color: #b91c1c;
+  font-weight: bold;
+}

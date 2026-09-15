@@ -22,27 +22,38 @@ ataForm.addEventListener('submit', function (event) {
   ataLlista.push(ataData);
   const ataKort = document.createElement('article');
   ataKort.classList.add('ata-kort');
+
+  const statusText = document.createElement('p');
+  statusText.textContent = `Status: ${statusSelect.options[statusSelect.selectedIndex].textContent }`;
+  if (ataData.status === "godkänd") {
+    statusText.classList.add('status-godkand');
+  } else {
+    statusText.classList.add('status-ej-godkand');
+  }
+  ataKort.appendChild(statusText);
+
   const projektRubrik = document.createElement('h3');
   projektRubrik.textContent =
     projektSelect.options[projektSelect.selectedIndex].textContent;
   ataKort.appendChild(projektRubrik);
+
   const beskrivningParagraf = document.createElement('p');
   beskrivningParagraf.textContent = ataData.beskrivning;
-  ataKort.appendChild(beskrivningParagraf); 
+  ataKort.appendChild(beskrivningParagraf);
+
   const datumParagraf = document.createElement('p');
-  datumParagraf.textContent = "Datum: " + ataData.datum;
+  datumParagraf.textContent = 'Datum: ' + ataData.datum;
   ataKort.appendChild(datumParagraf);
+
   const timmarParagraf = document.createElement('p');
-  timmarParagraf.textContent = "Timmar: " + ataData.timmar;
+  timmarParagraf.textContent = 'Timmar: ' + ataData.timmar;
   ataKort.appendChild(timmarParagraf);
-  const statusParagraf = document.createElement('p');
-  statusParagraf.textContent = "Status: " + statusSelect.options[statusSelect.selectedIndex].textContent;
-  ataKort.appendChild(statusParagraf);
+
   const ataTypParagraf = document.createElement('p');
-  ataTypParagraf.textContent = "ATA-typ: " + ataTypSelect.options[ataTypSelect.selectedIndex].textContent;
+  ataTypParagraf.textContent =
+    'ATA-typ: ' + ataTypSelect.options[ataTypSelect.selectedIndex].textContent;
   ataKort.appendChild(ataTypParagraf);
   ataKort.classList.add('ata-kort');
   ataListaElement.appendChild(ataKort);
-  console.log('Aktuell ATA-lista:', ataLlista);
   ataForm.reset();
 });
