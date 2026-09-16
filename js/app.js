@@ -24,8 +24,8 @@ ataForm.addEventListener('submit', function (event) {
   ataKort.classList.add('ata-kort');
 
   const statusText = document.createElement('p');
-  statusText.textContent = `Status: ${statusSelect.options[statusSelect.selectedIndex].textContent }`;
-  if (ataData.status === "godkänd") {
+  statusText.textContent = `Status: ${statusSelect.options[statusSelect.selectedIndex].textContent}`;
+  if (ataData.status === 'godkänd') {
     statusText.classList.add('status-godkand');
   } else {
     statusText.classList.add('status-ej-godkand');
@@ -53,6 +53,12 @@ ataForm.addEventListener('submit', function (event) {
   ataTypParagraf.textContent =
     'ATA-typ: ' + ataTypSelect.options[ataTypSelect.selectedIndex].textContent;
   ataKort.appendChild(ataTypParagraf);
+
+  const statusButton = document.createElement('button');
+  statusButton.textContent = 'Ändra status';
+  statusButton.type = 'button';
+  ataKort.appendChild(statusButton);
+
   ataKort.classList.add('ata-kort');
   ataListaElement.appendChild(ataKort);
   ataForm.reset();
