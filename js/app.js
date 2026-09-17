@@ -20,8 +20,8 @@ ataForm.addEventListener('submit', function (event) {
     projekt: projektSelect.value,
   };
   ataLlista.push(ataData);
-  const ataKort = document.createElement('article');
-  ataKort.classList.add('ata-kort');
+  const ataCard = document.createElement('article');
+  ataCard.classList.add('ata-card');
 
   const statusText = document.createElement('p');
   statusText.textContent = `Status: ${statusSelect.options[statusSelect.selectedIndex].textContent}`;
@@ -30,36 +30,36 @@ ataForm.addEventListener('submit', function (event) {
   } else {
     statusText.classList.add('status-ej-godkand');
   }
-  ataKort.appendChild(statusText);
+  ataCard.appendChild(statusText);
 
   const projektRubrik = document.createElement('h3');
   projektRubrik.textContent =
     projektSelect.options[projektSelect.selectedIndex].textContent;
-  ataKort.appendChild(projektRubrik);
+  ataCard.appendChild(projektRubrik);
 
   const beskrivningParagraf = document.createElement('p');
   beskrivningParagraf.textContent = ataData.beskrivning;
-  ataKort.appendChild(beskrivningParagraf);
+  ataCard.appendChild(beskrivningParagraf);
 
   const datumParagraf = document.createElement('p');
   datumParagraf.textContent = 'Datum: ' + ataData.datum;
-  ataKort.appendChild(datumParagraf);
+  ataCard.appendChild(datumParagraf);
 
   const timmarParagraf = document.createElement('p');
   timmarParagraf.textContent = 'Timmar: ' + ataData.timmar;
-  ataKort.appendChild(timmarParagraf);
+  ataCard.appendChild(timmarParagraf);
 
   const ataTypParagraf = document.createElement('p');
   ataTypParagraf.textContent =
     'ATA-typ: ' + ataTypSelect.options[ataTypSelect.selectedIndex].textContent;
-  ataKort.appendChild(ataTypParagraf);
+  ataCard.appendChild(ataTypParagraf);
 
   const statusButton = document.createElement('button');
   statusButton.textContent = 'Ändra status';
   statusButton.type = 'button';
-  ataKort.appendChild(statusButton);
+  ataCard.appendChild(statusButton);
 
-  ataKort.classList.add('ata-kort');
-  ataListaElement.appendChild(ataKort);
+  ataCard.classList.add('ata-card');
+  ataListaElement.appendChild(ataCard);
   ataForm.reset();
 });
