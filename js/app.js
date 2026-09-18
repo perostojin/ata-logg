@@ -59,6 +59,20 @@ ataForm.addEventListener('submit', function (event) {
   statusButton.type = 'button';
   ataCard.appendChild(statusButton);
 
+  statusButton.addEventListener('click', function () {
+    if (ataData.status === 'godkänd') {
+      ataData.status = 'ej-godkänd';
+      statusText.textContent = 'Status: Ej godkänd';
+      statusText.classList.remove('status-godkand');
+      statusText.classList.add('status-ej-godkand');
+    } else {
+      ataData.status = 'godkänd';
+      statusText.textContent = 'Status: Godkänd';
+      statusText.classList.remove('status-ej-godkand');
+      statusText.classList.add('status-godkand');
+    }
+  });
+
   ataCard.classList.add('ata-card');
   ataListaElement.appendChild(ataCard);
   ataForm.reset();
