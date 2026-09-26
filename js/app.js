@@ -6,7 +6,9 @@ const timmarInput = document.getElementById('timmar');
 const statusSelect = document.getElementById('status');
 const projektSelect = document.getElementById('projekt');
 const ataListaElement = document.getElementById('ata-lista');
-const ataLlista = [];
+let ataLlista = [];
+
+ataLlista = JSON.parse(localStorage.getItem('ataEntries') || '[]');
 
 ataForm.addEventListener('submit', function (event) {
   event.preventDefault();
@@ -20,6 +22,7 @@ ataForm.addEventListener('submit', function (event) {
     projekt: projektSelect.value,
   };
   ataLlista.push(ataData);
+  localStorage.setItem('ataEntries', JSON.stringify(ataLlista));
   const ataCard = document.createElement('article');
   ataCard.classList.add('ata-card');
 
@@ -30,6 +33,8 @@ ataForm.addEventListener('submit', function (event) {
   } else {
     statusText.classList.add('status-ej-godkand');
   }
+
+
   ataCard.appendChild(statusText);
 
   const projektRubrik = document.createElement('h3');
@@ -71,9 +76,9 @@ ataForm.addEventListener('submit', function (event) {
       statusText.classList.remove('status-ej-godkand');
       statusText.classList.add('status-godkand');
     }
+    localStorage.setItem('ataEntries', JSON.stringify(ataLlista));
   });
 
-  ataCard.classList.add('ata-card');
   ataListaElement.appendChild(ataCard);
   ataForm.reset();
 });
