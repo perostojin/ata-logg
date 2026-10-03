@@ -40,7 +40,6 @@ ataForm.addEventListener('submit', function (event) {
     statusText.classList.add('status-ej-godkand');
   }
 
-
   ataCard.appendChild(statusText);
 
   const projektRubrik = document.createElement('h3');
@@ -89,6 +88,13 @@ ataForm.addEventListener('submit', function (event) {
   ataForm.reset();
 });
 function updateEntryCount() {
-  entryCountElement.textContent = `Antal registrerade ÄTA: ${ataLlista.length}`;
+  if (ataLlista.length === 0) {
+    entryCountElement.textContent = 'Inga registrerade ÄTA ännu';
+  } else if (ataLlista.length === 1) {
+    entryCountElement.textContent = `${ataLlista.length} registrerad ÄTA`;
+  } else {
+    entryCountElement.textContent = `${ataLlista.length} registrerade ÄTA`;
+  }
 }
+
 updateEntryCount();
