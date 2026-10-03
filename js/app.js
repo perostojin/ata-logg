@@ -101,4 +101,8 @@ function countApproved(entries) {
   return entries.filter(entry => entry.status === 'godkänd').length;
 }
 
+function calculateTotalHours(entries) {
+  return entries.reduce((total, entry) => total + parseFloat(entry.timmar), 0);
+}
+
 updateEntryCount();
