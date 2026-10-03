@@ -97,4 +97,8 @@ function updateEntryCount() {
   }
 }
 
+function countApproved(entries) {
+  return entries.filter(entry => entry.status === 'godkänd').length;
+}
+
 updateEntryCount();
