@@ -6,6 +6,7 @@ const timmarInput = document.getElementById('timmar');
 const statusSelect = document.getElementById('status');
 const projektSelect = document.getElementById('projekt');
 const ataListaElement = document.getElementById('ata-lista');
+const entryCountElement = document.getElementById('entry-count');
 let ataLlista = [];
 
 ataLlista = JSON.parse(localStorage.getItem('ataEntries') || '[]');
@@ -27,6 +28,7 @@ ataForm.addEventListener('submit', function (event) {
   };
   ataLlista.push(ataData);
   saveEntries();
+  updateEntryCount();
   const ataCard = document.createElement('article');
   ataCard.classList.add('ata-card');
 
@@ -86,3 +88,7 @@ ataForm.addEventListener('submit', function (event) {
   ataListaElement.appendChild(ataCard);
   ataForm.reset();
 });
+function updateEntryCount() {
+  entryCountElement.textContent = `Antal registrerade ÄTA: ${ataLlista.length}`;
+}
+updateEntryCount();
