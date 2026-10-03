@@ -10,6 +10,10 @@ let ataLlista = [];
 
 ataLlista = JSON.parse(localStorage.getItem('ataEntries') || '[]');
 
+function saveEntries() {
+  localStorage.setItem('ataEntries', JSON.stringify(ataLlista));
+}
+
 ataForm.addEventListener('submit', function (event) {
   event.preventDefault();
 
@@ -22,7 +26,7 @@ ataForm.addEventListener('submit', function (event) {
     projekt: projektSelect.value,
   };
   ataLlista.push(ataData);
-  localStorage.setItem('ataEntries', JSON.stringify(ataLlista));
+  saveEntries();
   const ataCard = document.createElement('article');
   ataCard.classList.add('ata-card');
 
@@ -76,7 +80,7 @@ ataForm.addEventListener('submit', function (event) {
       statusText.classList.remove('status-ej-godkand');
       statusText.classList.add('status-godkand');
     }
-    localStorage.setItem('ataEntries', JSON.stringify(ataLlista));
+    saveEntries();
   });
 
   ataListaElement.appendChild(ataCard);
