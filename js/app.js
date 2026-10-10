@@ -7,44 +7,32 @@ const statusSelect = document.getElementById('status');
 const projektSelect = document.getElementById('projekt');
 const ataListaElement = document.getElementById('ata-lista');
 const entryCountElement = document.getElementById('entry-count');
-let ataLlista = [];
+let ataLista = [];
 
-ataLlista = JSON.parse(localStorage.getItem('ataEntries') || '[]');
+ataLista = JSON.parse(localStorage.getItem('ataEntries') || '[]');
 
 function saveEntries() {
-  localStorage.setItem('ataEntries', JSON.stringify(ataLlista));
+  localStorage.setItem('ataEntries', JSON.stringify(ataLista));
 }
 
-ataForm.addEventListener('submit', function (event) {
-  event.preventDefault();
-
-  const ataData = {
-    datum: datumInput.value,
-    ataTyp: ataTypSelect.value,
-    beskrivning: beskrivningInput.value,
-    timmar: timmarInput.value,
-    status: statusSelect.value,
-    projekt: projektSelect.value,
-  };
-  ataLlista.push(ataData);
-  saveEntries();
-  updateEntryCount();
-  const ataCard = document.createElement('article');
+function renderEntry (ataData) {
+   const ataCard = document.createElement('article');
   ataCard.classList.add('ata-card');
 
   const statusText = document.createElement('p');
-  statusText.textContent = `Status: ${statusSelect.options[statusSelect.selectedIndex].textContent}`;
   if (ataData.status === 'godkänd') {
     statusText.classList.add('status-godkand');
+    statusText.textContent = 'Status: Godkänd';
   } else {
     statusText.classList.add('status-ej-godkand');
+    statusText.textContent = 'Status: Ej godkänd';
   }
 
   ataCard.appendChild(statusText);
 
   const projektRubrik = document.createElement('h3');
   projektRubrik.textContent =
-    projektSelect.options[projektSelect.selectedIndex].textContent;
+    Array.from(projektSelect.options).find(option => option.value === ataData.projekt).textContent;
   ataCard.appendChild(projektRubrik);
 
   const beskrivningParagraf = document.createElement('p');
@@ -60,8 +48,8 @@ ataForm.addEventListener('submit', function (event) {
   ataCard.appendChild(timmarParagraf);
 
   const ataTypParagraf = document.createElement('p');
-  ataTypParagraf.textContent =
-    'ATA-typ: ' + ataTypSelect.options[ataTypSelect.selectedIndex].textContent;
+  ataTypParagraf.textContent = 
+    'ATA-typ: ' + Array.from(ataTypSelect.options).find(option => option.value === ataData.ataTyp).textContent;
   ataCard.appendChild(ataTypParagraf);
 
   const statusButton = document.createElement('button');
@@ -85,15 +73,33 @@ ataForm.addEventListener('submit', function (event) {
   });
 
   ataListaElement.appendChild(ataCard);
+}
+
+ataForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const ataData = {
+    datum: datumInput.value,
+    ataTyp: ataTypSelect.value,
+    beskrivning: beskrivningInput.value,
+    timmar: timmarInput.value,
+    status: statusSelect.value,
+    projekt: projektSelect.value,
+  };
+  ataLista.push(ataData);
+  saveEntries();
+  updateEntryCount()
+  renderEntry(ataData)
   ataForm.reset();
 });
+
 function updateEntryCount() {
-  if (ataLlista.length === 0) {
+  if (ataLista.length === 0) {
     entryCountElement.textContent = 'Inga registrerade ÄTA ännu';
-  } else if (ataLlista.length === 1) {
-    entryCountElement.textContent = `${ataLlista.length} registrerad ÄTA`;
+  } else if (ataLista.length === 1) {
+    entryCountElement.textContent = `${ataLista.length} registrerad ÄTA`;
   } else {
-    entryCountElement.textContent = `${ataLlista.length} registrerade ÄTA`;
+    entryCountElement.textContent = `${ataLista.length} registrerade ÄTA`;
   }
 }
 
@@ -104,5 +110,7 @@ function countApproved(entries) {
 function calculateTotalHours(entries) {
   return entries.reduce((total, entry) => total + parseFloat(entry.timmar), 0);
 }
+
+ataLista.forEach(entry => renderEntry(entry));
 
 updateEntryCount();
